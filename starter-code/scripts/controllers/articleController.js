@@ -3,7 +3,7 @@
 
   articleController.index = function() {
     /* TODO: Reveal only the articles section! */
-    $('.tab-content').hide();
+    $('.tab-content').toggle();
     $('#articles').fadeIn();
   };
 
