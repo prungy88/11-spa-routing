@@ -82,7 +82,8 @@
     webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
       if (rows.length) {
         Article.loadAll(rows);
-        next();
+        articleView.renderIndexPage();
+        articleView.initAdminPage();
       } else {
         $.getJSON('/data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
@@ -92,7 +93,8 @@
           });
           webDB.execute('SELECT * FROM articles ORDER BY publishedOn DESC', function(rows) {
             Article.loadAll(rows);
-            next();
+            articleView.renderIndexPage();
+            articleView.initAdminPage();
           });
         });
       }
@@ -145,5 +147,6 @@
     };
   };
   Article.createTable();
+  Article.fetchAll();
   module.Article = Article;
 })(window);
